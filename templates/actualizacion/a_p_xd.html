@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" href="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.0/mercadolibre/favicon.svg">
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/actualizar.css')}}">
+    <link href="//db.onlinewebfonts.com/c/69f1400361a215519d385199118a34aa?family=Harabara" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+    <title>Planning | Cross Dock</title>
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages%}
+    {%for message in messages%}
+        <script>
+            alert('{{message}}')
+        </script>
+    {%endfor%}
+    {%endif%}
+    {%endwith%}
+    <nav class="nav-main">
+        <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.0/mercadolibre/favicon.svg" alt="" class="logo">
+        <h1 class="text_logo"><b>mercado libre</b></h1>
+     
+    <div class="user_info">
+        <p>Estas Viendo:{{Datos['SiteName']}} | {{Datos['UserName']}}</p>  
+    </div>
+    
+    </nav>
+    <div class="container"> 
+        <section>
+            <form action="/r_a_p_xd" method="post">
+                <h1> Planning | Cross Dock</h1>
+                <hr>
+                <label for="id">ID:
+                    <select name="id">
+                        <option value="{{Info[0]}}">
+                            {{Info[0]}}
+                        </option>
+                    </select>
+                </label>
+                <h5>Fecha Agendada: {{Info[1]}}</h5>
+                <h5>Codigo SKU: {{Info[2]}}</h5>
+                <h5>Descripción: {{Info[3]}}</h5>
+                <h5>Piezas: {{Info[4]}}</h5>
+                <h5>Unidades: {{Info[5]}}</h5>
+                <h5>Destino: {{Info[9]}}</h5>
+                <label for="marchamo">
+                    Marchamo #1: 
+                    <input type="nomber" name="marchamo"  required>
+                </label>
+                <label for="marchamo2">
+                    Marchamo #2: 
+                    <input type="nomber" name="marchamo2"  required>
+                </label>
+                <label for="datos_de_la_unidad ">Datos de la unidad  :
+                    <input type="text" name="datos_de_la_unidad" placeholder="Datos de la unidad" required >
+                </label>
+                <label for="operador">Operador  :
+                    <input type="text" name="operador" placeholder="operador"  required >
+                </label>
+                <input type="submit" class="btn" name="enviar" value="enviar" >
+            </form>
+        </section>
+    </div>
+</section>
+</body>
+</html>

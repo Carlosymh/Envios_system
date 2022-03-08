@@ -1,0 +1,23 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Rechazar</title>
+{% endblock %}
+{% block body%}
+    <div class="fondo"></div>
+        <section>
+            <form action="/Rechazar/{{paquetera}}/{{orden}}/{{accion}}/{{Recibo}}" method="POST" >
+                <label for="comentario">Razon de Rechazo: </label><br>
+                <select name="comentario" required>
+                <option value="N/A">N/A</option>
+                <option value="Dañado">Dañado</option>
+                <option value="Extracción">Extracción</option>
+                <option value="Otro FC">Otro FC</option>
+                <option value="Drop off / cross dosck">Drop off / cross dosck</option>
+                </select>
+                <input type="submit" class="btn" name="enviar" value="Continuar" >
+            </form>
+        </section>
+{% endblock %}

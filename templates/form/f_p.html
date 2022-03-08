@@ -1,0 +1,45 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Pre-Alert</title>
+{% endblock %}
+{% block body%}
+        <div class="fondo"></div>
+        <section>
+            <form action="/registro_prealert" method="POST" >
+                <h2>Prealert de ordenes</h2>
+                    <label for="key_pa">Prealert Key</label>
+                    <input type="text" name="key_pa" placeholder="Ingresa el numero de orden"/> 
+                    <label for="Facility">Facility Destino</label>
+                    <select name="Facility">
+                        <option value="MXXEM1">MXXEM1</option>
+                        <option value="MXXGD1">MXXGD1</option>
+                        <option value="MXXMT1">MXXMT1</option>
+                        <option value="MXXQR1">MXXQR1</option>
+                        <option value="MXXMD1">MXXMD1</option>
+                        <option value="MXXHM1">MXXHM1</option>
+                        <option value="MXXCH1">MXXCH1</option>
+                        <option value="FCD01">FCD01</option>
+                        <option value="FCD02">FCD02</option>
+                        <option value="FCD03">FCD03</option>
+                        <option value="FCD04">FCD04</option>
+                        <option value="FCJC01">FCJC01</option>
+                        <option value="FCNL01">FCNL01</option>
+                    </select> 
+                    <label for="Transporte">Empresa transportista</label>
+                    <select name="Transporte">
+                        <option value="TMS">TMS</option>
+                        <option value="Eurologistics">Eurologistics</option>
+                    </select>    
+                    <label for="Trasportista">Nombre del transportista</label>
+                    <input type="text" name="Trasportista" placeholder="Ingresa el nombre"/>
+                    <label for="Placas">Placas del tracto</label>
+                    <input type="text" name="Placas" placeholder="Ingresa el numero de Placas"/>
+                    <label for="Marchamo">Marchamo</label>
+                    <input type="text" name="Marchamo" placeholder="Ingresa el numero de Placas"/>
+                <input type="submit" class="btn" name="enviar" value="Continuar" >
+            </form>
+        </section>
+{% endblock %}

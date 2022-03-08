@@ -1,0 +1,17 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios_trackin.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Trackin Ordenes</title>
+{% endblock %}
+{% block body%}
+        <div class="fondo"></div>
+        <section>
+            <form action="/Trackin_ordenes" method="POST" >
+                <h2 class="titulo">Track In de Ordenes</h2>
+                <label for="Orden">Orden: <input type="number" name="Orden"  required ></label>
+                <input type="submit" class="btn" name="enviar" value="Buscar" >
+            </form>
+        </section>
+{% endblock %}

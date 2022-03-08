@@ -1,0 +1,22 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Logistic</title>
+{% endblock %}
+    {% block body%}
+        <div class="fondo">
+        <section>
+            <div class="user"><i class="far fa-user"></i>
+                <h1>¡Hola! </h1><h3>{{Datos['FullName']}}</h3>
+                </div>
+        </section>
+        <div class="container_form">
+                        <a href='/f_r_f' class='Proces_link'><i class="fas fa-truck-loading"></i> Recibo</a>
+                        <a href='/f_r_p_s' class='Proces_link'><i class="fas fa-mobile-alt"></i>Registro Prealert </a>
+                        <a href='/f_p' class='Proces_link'><i class="far fa-bell"></i>Envio Prealert</a>
+                
+        </div>
+    </div>
+{% endblock %}

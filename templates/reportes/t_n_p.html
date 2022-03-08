@@ -1,0 +1,134 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/reportes.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>No Procesable</title>
+{% endblock %}
+
+{% block body%}
+    <div class="filtros">
+        <form action="/t_n_p/0" method="post" class="form_filtros">
+            <select name="filtro">
+                <option value="id_orden">ID</option>
+                <option value="usuario_wms">Usuario</option>
+                <option value="paquetera">Paquetera</option>
+                <option value="orden">Orden</option>
+                <option value="pallet">Pallet</option>
+                <option value="tipo">Tipo</option>
+                <option value="fulfillment_origen">Fulfillment Origen</option>
+                <option value="estatus">Estatus</option>
+                <option value="service_center">Service Center</option>
+                <option value="region">Region</option>
+                <option value="ticket">Ticket</option>
+                <option value="estatus_orden">Estatus Orden</option>
+                <option value="responsable">Responsable</option>
+            </select>
+            <input autocomplete="off" type="text" name="valor">
+            <label for="datefilter">Fecha: </label>
+            <input autocomplete="off" type="text" name="datefilter" value="" />
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+        <a href="/csvn_p" target="_blank" class="download_csv"><i class="fas fa-file-download"></i>  Descargar</a>
+    </div>
+        <div class="fondo">
+        <section>
+            <table>
+                <thead >
+                    <tr class="head">
+                        <th> ID </th>
+                        <th> Usuario </th>
+                        <th> Paquetera </th>
+                        <th> Orden </th>
+                        <th> Pallet </th>
+                        <th> Tipo </th>
+                        <th> Fulfillment Origen</th>
+                        <th> Estatus </th>
+                        <th> Service Center </th>
+                        <th> Region </th>
+                        <th> Ticket </th>
+                        <th> Fecha Ticket </th>
+                        <th> Estatus Orden</th>
+                        <th> Comentario </th>
+                        <th> responsable </th>
+                        <th> Fecha Y Hora </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for Info in  Infos%}
+                    <tr>
+                        <td>{{Info.0}}</td>
+                        <td>{{Info.1}}</td>
+                        <td>{{Info.2}}</td>
+                        <td>{{Info.3}}</td>
+                        <td>{{Info.4}}</td>
+                        <td>{{Info.5}}</td>
+                        <td>{{Info.6}}</td>
+                        <td>{{Info.7}}</td>
+                        <td>{{Info.8}}</td>
+                        <td>{{Info.9}}</td>
+                        <td>{{Info.10}}</td>
+                        <td>{{Info.11}}</td>
+                        <td>{{Info.12}}</td>
+                        <td>{{Info.13}}</td>
+                        <td>{{Info.16}}</td>
+                        <td>{{Info.19}}</td>
+                    </tr>
+                    {%endfor%}
+                    <tr class="Pag">
+                        <td colspan="16" class="Pag">
+                            {%set row= Datos['rowi_t_n_p'] |int%}
+                            {%if row==0%}
+                            <a href="/t_n_p/0" class="after">
+                                <i class="fas fa-angle-double-left">
+                                </i>
+                            </a>
+                            {%else%}
+                            {%set rowMenos=row-50 | int%}
+                            <a href="/t_n_p/{{rowMenos}}" class="after">
+                                <i class="fas fa-angle-double-left">
+                                </i>
+                            </a>
+                            {%endif%}
+                            {%set rowMas=row+50 | int%}
+                            <a href="/t_n_p/0" class="in"> 1 </a>
+                            <a href="/t_n_p/50" class="in"> 2 </a>
+                            <a href="/t_n_p/100" class="in"> 3 </a>
+                            <a href="/t_n_p/150" class="in"> 4 </a>
+                            <a href="/t_n_p/200" class="in"> 5 </a>
+                            <a href="/t_n_p/250" class="in"> 6 </a>
+                            <a href="/t_n_p/300" class="in"> 7 </a>
+                            <a href="/t_n_p/350" class="in"> 8 </a>
+                            <a href="/t_n_p/400" class="in"> 9 </a>
+                            <a href="/t_n_p/450" class="in"> 10 </a>
+                            <a href="/t_n_p/{{rowMas}}" class="before">
+                                <i class="fas fa-angle-double-right">
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+          $('input[name="datefilter"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel: 'Clear'
+              }
+          });
+        
+          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+          });
+        
+          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+        
+        });
+        </script>
+{% endblock %}

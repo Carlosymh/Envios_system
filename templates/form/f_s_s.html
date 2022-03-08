@@ -1,0 +1,28 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Salida Insumos</title>
+{% endblock %}
+    {% block body%}
+        <div class="fondo"></div>
+        <section>
+            <form action="/registro_svcs_salida" method="POST" >
+                <h2>Materiales Enviados</h2>
+                <label for="Tarimas_enviadas">Tarimas : <input type="number" name="Tarimas_enviadas"  placeholder="Tarimas enviadas" required></label>
+                <label for="Gaylord_Enviados">Gaylord : <input type="number" name="Gaylord_Enviados"  placeholder="Gaylord Enviados"required ></label>
+                <h2>Identifique Cross Dock "Destino"</h2>
+                <label for="Cross_Dock">Cross Dock : </label>
+                <select name="Cross_Dock" required>
+                    <option value="México MXXEM1">Mexíco MXXEM1</option>
+                    <option value="Guadalajara MXXGD1" selected>Guadalajara MXXGD1</option>
+                    <option value="Monterrey MXXMT1">Monterrey MXXMT1</option>
+                    <option value="Culiacán MXXCU1" selected>Culiacán MXXCU1</option>
+                    <option value="Mérida MXXMD1">Mérida MXXMD1</option>
+                    <option value="Queretaro MXXQR1" selected>Queretaro MXXQR1</option>
+                </select>
+                <input type="submit" class="btn" name="enviar" value="enviar" >
+            </form>
+        </section>
+{% endblock %}

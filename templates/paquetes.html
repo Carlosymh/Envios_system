@@ -1,0 +1,22 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Paquetes</title>
+{% endblock %}
+    {% block body%}
+        <div class="fondo">
+        <section>
+            <div class="user"><i class="far fa-user"></i>
+                <h1>¡Hola! </h1><h3>{{Datos['FullName']}}</h3>
+                </div>
+        </section>
+        <div class="container_form">
+                <a href='/gestiondepaquetes' class='Proces_link'><i class="fas fa-boxes"></i> Gestion de Paquetes</a>
+                {%if Datos['Rango'] == 'Problem Solver' or  Datos['Rango'] == 'Administrador'%}
+                <a href='/problem' class='Proces_link'><i class="far fa-times-circle"></i> Problem Solver</a>
+                {%endif%}
+        </div>
+    </div>
+{% endblock %}

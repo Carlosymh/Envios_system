@@ -1,0 +1,22 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Recibo 3PL</title>
+{% endblock %}
+{% block body%}
+        <div class="fondo"></div>
+        <section>
+            <form action="/validar_cc/{{paquetera}}" method="POST" >
+                <h2 class="titulo">Entregas no efectivas  {{paquetera}}</h2>
+                <label for="orden">Orden: <input type="text" name="orden"  required ></label>
+                <label for="accion"> Accion: </label>
+                <select name="accion" id="accion" required>
+                    <option value="Aceptar">Aceptar</option>
+                    <option value="Rechazar">Rechazar</option>
+                </select>
+                <input type="submit" class="btn" name="enviar" value="Continuar" >
+            </form>
+        </section>
+{% endblock %}

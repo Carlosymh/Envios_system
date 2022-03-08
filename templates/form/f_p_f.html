@@ -1,0 +1,17 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/formularios.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Planning Fulfillment</title>
+{% endblock %}
+    {% block body%}
+        <div class="fondo"></div>
+        <section>
+            <form action="/a_p_f" method="POST" >
+                <h2 class="titulo">Panning | Fullfilment</h2>
+                <label for="id_planing">ID Planning : <input type="nomber" name="id_planing"  required></label>
+                <input type="submit" class="btn" name="enviar" value="enviar" >
+            </form>
+        </section>
+{% endblock %}

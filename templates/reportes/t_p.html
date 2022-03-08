@@ -1,0 +1,130 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/reportes.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Reporte Prealert</title>
+{% endblock %}
+
+{% block body%}
+    <div class="filtros">
+        <form action="/t_p/0" method="post" class="form_filtros">
+            <select name="filtro">
+                <option value="id_prealert">ID</option>
+                <option value="ID_Envio_Prealert">Prealert Key</option>
+                <option value="Origen">Facility de Origen</option>
+                <option value="SiteName">Site de Origen</option>
+                <option value="Destino">Facility Destino</option>
+                <option value="SiteName_Destino">Site Destino</option>
+                <option value="EmpresaTransporte">Transporte</option>
+                <option value="Transportista">Trasportista</option>
+                <option value="Placas">Placas</option>
+                <option value="Orden">Orden</option>
+                <option value="Paquetera">Paquetera</option>
+                <option value="Marchamo">Marchamo</option>
+                <option value="Responsable">Responsable</option>
+            </select>
+            <input autocomplete="off" type="text" name="valor">
+            <label for="datefilter">Fecha: </label>
+            <input autocomplete="off" type="text" name="datefilter" value="" />
+            </label>
+            <input type="submit" value="Buscar">
+        </form>
+        <a href="/csvPrealert" target="_blank" class="download_csv"><i class="fas fa-file-download"></i>  Descargar</a>
+    </div>
+        <div class="fondo">
+        <section>
+            <table>
+                <thead >
+                    <tr class="head">
+                        <th> ID </th>
+                        <th> Pre-Alert Key </th>
+                        <th> Facility Origen</th>
+                        <th> Site Origen </th>
+                        <th> Facility Destino </th>
+                        <th> Site Destino </th>
+                        <th> Trasporte </th>
+                        <th> Trasportista </th>
+                        <th> Placas </th>
+                        <th> Orden </th>
+                        <th> Paquetera </th>
+                        <th> Marchamo </th>
+                        <th> Responsable </th>
+                        <th> Fecha Y Hora </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {%for Info in  Infos%}
+                    <tr>
+                        <td>{{Info.0}}</td>
+                        <td>{{Info.1}}</td>
+                        <td>{{Info.2}}</td>
+                        <td>{{Info.3}}</td>
+                        <td>{{Info.4}}</td>
+                        <td>{{Info.5}}</td>
+                        <td>{{Info.6}}</td>
+                        <td>{{Info.7}}</td>
+                        <td>{{Info.8}}</td>
+                        <td>{{Info.9}}</td>
+                        <td>{{Info.10}}</td>
+                        <td>{{Info.11}}</td>
+                        <td>{{Info.12}}</td>
+                        <td>{{Info.14}}</td>
+                    </tr>
+                    {%endfor%}
+                    <tr class="Pag">
+                        <td colspan="14" class="Pag">
+                            {%set row= Datos['rowi_t_p'] |int%}
+                            {%if row==0%}
+                            <a href="/t_p/0" class="after">
+                                <i class="fas fa-angle-double-left">
+                                </i>
+                            </a>
+                            {%else%}
+                            {%set rowMenos=row-50 | int%}
+                            <a href="/t_p/{{rowMenos}}" class="after">
+                                <i class="fas fa-angle-double-left">
+                                </i>
+                            </a>
+                            {%endif%}
+                            {%set rowMas=row+50 | int%}
+                            <a href="/t_p/0" class="in"> 1 </a>
+                            <a href="/t_p/50" class="in"> 2 </a>
+                            <a href="/t_p/100" class="in"> 3 </a>
+                            <a href="/t_p/150" class="in"> 4 </a>
+                            <a href="/t_p/200" class="in"> 5 </a>
+                            <a href="/t_p/250" class="in"> 6 </a>
+                            <a href="/t_p/300" class="in"> 7 </a>
+                            <a href="/t_p/350" class="in"> 8 </a>
+                            <a href="/t_p/400" class="in"> 9 </a>
+                            <a href="/t_p/450" class="in"> 10 </a>
+                            <a href="/t_p/{{rowMas}}" class="before">
+                                <i class="fas fa-angle-double-right">
+                                </i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <script type="text/javascript">
+        $(function() {
+          $('input[name="datefilter"]').daterangepicker({
+              autoUpdateInput: false,
+              locale: {
+                  cancelLabel: 'Clear'
+              }
+          });
+        
+          $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+              $(this).val(picker.startDate.format('YYYY/MM/DD') + ' - ' + picker.endDate.format('YYYY/MM/DD'));
+          });
+        
+          $('input[name="datefilter"]').on('cancel.daterangepicker', function(ev, picker) {
+              $(this).val('');
+          });
+        
+        });
+        </script>
+{% endblock %}

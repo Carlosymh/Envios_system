@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image" href="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.0/mercadolibre/favicon.svg">   
+{% block style %}
+{% endblock %}
+    <link href="//db.onlinewebfonts.com/c/69f1400361a215519d385199118a34aa?family=Harabara" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/nav.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Khula:wght@800&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+{% block titulo %}
+{% endblock %}
+    <title>Reporte Realert</title>
+</head>
+<body>
+<nav class="nav-main">
+    <!--BTN-->
+    <input type="checkbox" class="nav-main__btn-collapse" id="nav-main__checkbox">
+    <label for="nav-main__checkbox" class="nav-main__btn-collapse-icon">
+        <span class="icon-nav"></span>
+        <span class="icon-nav"></span>
+        <span class="icon-nav"></span>
+    </label>
+    <!--Logo-->
+    <a href="/home" class="enlace">
+        <img src="https://http2.mlstatic.com/frontend-assets/ui-navigation/5.10.0/mercadolibre/favicon.svg" alt="" class="logo">
+        <h1 class="text_logo"><b>mercado libre</b></h1>
+        
+    </a>
+ 
+    <!--MENU-->
+    <div class="nav-main__menu">
+        <div class="btn_nav"></div>
+        <a href='/home' class='link_menu'><i class="fas fa-mobile">  Procesos</i> </a>
+        <button class="accordion"><i class="fas fa-table">  Reportes</i></button>
+        <div class="panel">
+            {%if Datos['Rango'] == 'Representante' and Datos['FcName'] == 'Fulfillment' or Datos['Rango'] == 'Auxiliar' and Datos['FcName'] == 'Fulfillment' or  Datos['Rango'] == 'Team Leader' and Datos['FcName'] == 'Fulfillment' or  Datos['Rango'] == 'Administrador'%}
+                    <a href='/t_r_f/0' class='link_menu'>  Recibo</a>
+                    <a href='/t_n_p/0' class='link_menu'>  No Prosesable</a>
+            {%endif%}
+            {%if Datos['Rango'] == 'Representante' and Datos['FcName'] == 'Cross Dock' or Datos['Rango'] == 'Auxiliar' and Datos['FcName'] == 'Cross Dock' or  Datos['Rango'] == 'Team Leader' and Datos['FcName'] == 'Cross Dock' or  Datos['Rango'] == 'Administrador'%}
+            <a href='/t_p/0' class='link_menu'>  Prealert</a>
+            {%endif%}
+            {% if Datos['Rango'] == 'Representante' and Datos['FcName'] == 'Service Center' or Datos['Rango'] == 'Auxiliar' and Datos['FcName'] == 'Service Center' or  Datos['Rango'] == 'Team Leader' and Datos['FcName'] == 'Service Center' or  Datos['Rango'] == 'Administrador'%}
+                    <a href='/t_e_s/0' class='link_menu'>  Recibo Insumos </a>
+                    <a href='/t_s_s/0' class='link_menu'>  Salida Insumos</a>
+            {%endif%}
+            {% if Datos['Rango'] == 'Planning' or  Datos['Rango'] == 'Administrador' or Datos['FcName'] == 'Fulfillment' or Datos['FcName'] == 'Cross Dock'%}
+                    <a href='/t_planning/0' class='link_menu'>  Planning</a>
+            {%endif%}
+        </div>
+            <a href='/trackinOrden' class='link_menu'><i class="fas fa-route"> Track In</i></a>
+            {% if  Datos['Rango'] == 'Administrador'%}
+                <a href='/registro' class='link_menu'><i class="fas fa-users">  Registro de Usuarios</i></a>
+            {%endif%}
+            
+    </div>
+<div class="user_info">
+    <p>Estas Viendo:{{Datos['SiteName']}}</p>
+    <a href="/logout"><i class="fas fa-power-off"></i>  {{Datos['UserName']}}</a>
+</div>
+
+</nav>
+
+
+{% block body %}
+{% endblock %}
+<script>
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+        /* Toggle between adding and removing the "active" class,
+        to highlight the button that controls the panel */
+        this.classList.toggle("active");
+
+        /* Toggle between hiding and showing the active panel */
+        var panel = this.nextElementSibling;
+        if (panel.style.display === "block") {
+        panel.style.display = "none";
+        } else {
+        panel.style.display = "block";
+        }
+    });
+    }
+</script>
+</body>
+</html>

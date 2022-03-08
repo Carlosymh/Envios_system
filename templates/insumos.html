@@ -1,0 +1,27 @@
+{% extends 'nav.html'%}
+{% block style %}
+<link rel="stylesheet" href="{{url_for('static', filename='css/home.css')}}">
+{% endblock %}
+{% block titulo %}
+<title>Paquetes</title>
+{% endblock %}
+    {% block body%}
+        <div class="fondo">
+        <section>
+            <div class="user"><i class="far fa-user"></i>
+                <h1>¡Hola! </h1><h3>{{Datos['FullName']}}</h3>
+                </div>
+        </section>
+        <div class="container_form">
+                {%if Datos['FcName'] == 'Cross Dock' or  Datos['FcName'] == 'Fulfillment' or  Datos['Rango'] == 'Administrador'%}
+                <a href='/DespachoArribo' class='Proces_link'><i class="fas fa-truck"></i> Despacho | Arribo </a>
+                {%endif%}
+                {%if Datos['FcName'] == 'Service Center' or  Datos['Rango'] == 'Administrador'%}
+                <a href='/EntradasSalidasInsumos' class='Proces_link'><i class="fas fa-pallet"></i>Entradas | Salidas  Insumos</a>
+                {%endif%}
+                {%if Datos['Rango'] == 'Planeacion' or  Datos['Rango'] == 'Administrador'%}
+                <a href='/Planning' class='Proces_link'><i class="fas fa-calendar-day"></i>Planning</a>
+                {%endif%}
+        </div>
+    </div>
+{% endblock %}
